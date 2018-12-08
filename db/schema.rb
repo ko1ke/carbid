@@ -10,7 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_08_010747) do
+ActiveRecord::Schema.define(version: 2018_12_08_014419) do
+
+  create_table "auctions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.datetime "close_at", null: false
+    t.boolean "closed", default: false
+    t.string "title", null: false
+    t.text "description", null: false
+    t.string "picture"
+    t.integer "initial_price", default: 0
+    t.bigint "maker_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["maker_id"], name: "index_auctions_on_maker_id"
+    t.index ["user_id"], name: "index_auctions_on_user_id"
+  end
 
   create_table "makers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -33,4 +48,6 @@ ActiveRecord::Schema.define(version: 2018_12_08_010747) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "auctions", "makers"
+  add_foreign_key "auctions", "users"
 end
