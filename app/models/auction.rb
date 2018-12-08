@@ -18,4 +18,7 @@
 class Auction < ApplicationRecord
   belongs_to :user
   belongs_to :maker
+
+  scope :ongoing, -> { where(closed: false) }
+
 end
