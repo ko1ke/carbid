@@ -5,3 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+makers = %w(T社 H社 M社 B社 S社)
+makers.each do |maker|
+  Maker.create!(name: maker)
+end
+
+puts 'Makers setup'
