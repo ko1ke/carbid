@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_08_014419) do
+ActiveRecord::Schema.define(version: 2018_12_10_081616) do
 
   create_table "auctions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(version: 2018_12_08_014419) do
     t.boolean "closed", default: false
     t.string "title", null: false
     t.text "description", null: false
-    t.string "picture"
     t.integer "initial_price", default: 0
     t.bigint "maker_id"
     t.datetime "created_at", null: false
