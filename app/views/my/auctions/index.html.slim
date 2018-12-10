@@ -1,0 +1,21 @@
+h1 Listing my_auctions
+
+table
+  thead
+    tr
+      th
+      th
+      th
+      th
+
+  tbody
+    - @auctions.each do |auction|
+      tr
+        td = auction.title + ':'
+        td = link_to 'Show', my_auction_path(auction)
+        td = link_to 'Edit', edit_my_auction_path(auction)
+        td = link_to 'Destroy', my_auction_url(auction), data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Auction', new_my_auction_path
