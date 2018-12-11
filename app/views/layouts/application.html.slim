@@ -26,11 +26,11 @@ html
               a#navbarDropdownMenuLink.nav-link.dropdown-toggle[href="http://example.com" data-toggle="dropdown"]
                 | ユーザー管理
               .dropdown-menu.dropdown-menu-right[aria-labelledby="navbarDropdownMenuLink"]
-                = link_to 'ログイン', new_user_session_path, class: 'dropdown-item'
 
                 - if current_user
                   = link_to 'ユーザー編集', edit_user_registration_path, class: 'dropdown-item'
-                  .dropdown-divider
                   = link_to 'ログアウト', destroy_user_session_path, class: 'dropdown-item', method: :delete
+                - else
+                  = link_to 'ログイン', new_user_session_path, class: 'dropdown-item'
           = yield
           = debug(params) if Rails.env.development?
