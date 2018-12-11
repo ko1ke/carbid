@@ -13,5 +13,24 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
     .container
-      = yield
-      = debug(params) if Rails.env.development?
+      = render 'shared/logo'
+      .row
+        .col-md-12
+          ul.nav.nav-tabs
+            - if current_user
+              li.nav-item
+                = link_to 'オークション管理', my_auctions_path, class: 'nav-link'
+            li.nav-item
+              = link_to 'オークション閲覧・入札', root_path, class: 'nav-link'
+            li.nav-item.dropdown.ml-md-auto
+              a#navbarDropdownMenuLink.nav-link.dropdown-toggle[href="http://example.com" data-toggle="dropdown"]
+                | ユーザー管理
+              .dropdown-menu.dropdown-menu-right[aria-labelledby="navbarDropdownMenuLink"]
+                = link_to 'ログイン', new_user_session_path, class: 'dropdown-item'
+
+                - if current_user
+                  = link_to 'ユーザー編集', edit_user_registration_path, class: 'dropdown-item'
+                  .dropdown-divider
+                  = link_to 'ログアウト', destroy_user_session_path, class: 'dropdown-item', method: :delete
+          = yield
+          = debug(params) if Rails.env.development?

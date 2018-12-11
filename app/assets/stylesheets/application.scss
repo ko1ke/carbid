@@ -1,1 +1,18 @@
 @import "bootstrap";
+
+.container {
+  margin-top: 30px;
+}
+
+.nav-tabs {
+  margin-bottom: 10px;
+}
+
+.logo-link {
+  text-decoration: none;
+  color: black;
+  &:hover {
+    text-decoration: none;
+    color: black;
+  }
+}
