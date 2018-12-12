@@ -8,7 +8,6 @@
 #  closed        :boolean          default(FALSE)
 #  title         :string(255)      not null
 #  description   :text(65535)      not null
-#  picture       :string(255)
 #  initial_price :integer          default(0)
 #  maker_id      :bigint(8)
 #  created_at    :datetime         not null

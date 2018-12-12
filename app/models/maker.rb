@@ -9,5 +9,6 @@
 #
 
 class Maker < ApplicationRecord
+  has_many :cars, inverse_of: :maker
   validates :name, presence: true, uniqueness: true
 end
