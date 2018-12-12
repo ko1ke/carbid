@@ -3,6 +3,7 @@ ja:
     models:
       maker: メーカー
       user: ユーザー
+      car: 車
       auction: オークション
       bid: 入札
     attributes:
@@ -10,10 +11,13 @@ ja:
         name: 名
       auction:
         maker_id: メーカー
+        car_id: 車名
         title: タイトル
         initial_price: 始値
         close_at: 終了日時
         description: 説明
+      car:
+        name: 名
     errors:
       messages:
         blank: を入力してください。

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_12_122248) do
+ActiveRecord::Schema.define(version: 2018_12_12_124241) do
 
   create_table "auctions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 2018_12_12_122248) do
     t.bigint "maker_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "car_id"
+    t.index ["car_id"], name: "index_auctions_on_car_id"
     t.index ["maker_id"], name: "index_auctions_on_maker_id"
     t.index ["user_id"], name: "index_auctions_on_user_id"
   end
@@ -55,6 +57,7 @@ ActiveRecord::Schema.define(version: 2018_12_12_122248) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "auctions", "cars"
   add_foreign_key "auctions", "makers"
   add_foreign_key "auctions", "users"
   add_foreign_key "cars", "makers"

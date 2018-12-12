@@ -64,6 +64,7 @@ class My::AuctionsController < My::ApplicationController
                                     :description,
                                     :initial_price,
                                     :user_id,
-                                    :maker_id)
+                                    :maker_id,
+                                    :car_id)
   end
 end
