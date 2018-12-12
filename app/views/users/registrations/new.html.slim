@@ -1,5 +1,5 @@
 h2
-  | Sign up
+  | ユーザー登録
 = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
   = f.error_notification
   .form-inputs
@@ -9,7 +9,7 @@ h2
             input_html: {autocomplete: "email"}
     = f.input :password,
             required: true,
-            hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+            hint: ("#{@minimum_password_length}文字以上" if @minimum_password_length),
             input_html: {autocomplete: "new-password"}
     = f.input :password_confirmation,
             required: true,
@@ -22,5 +22,5 @@ h2
             input_html: {autocomplete: "tel"}
 
   .form-actions
-    = f.button :submit, "Sign up"
+    = f.button :submit, class: 'btn btn-primary btn-block'
 = render "users/shared/links"

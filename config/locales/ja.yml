@@ -20,7 +20,7 @@ ja:
     submit:
       create: 登録
       submit: 保存
-      update: 更新する
+      update: 更新
   date:
     formats:
       default: "%Y/%m/%d"
