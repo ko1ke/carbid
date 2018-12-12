@@ -1,8 +1,16 @@
 p#notice = notice
 
-= @auction.inspect
+.card
+  .card-header
+    = @auction.title
+  .card-body
+    p.card-text
+      = @auction.description
+    p.card-text
+      = "始値：#{@auction.initial_price}"
+    p.card-text
+      = "終了時間：#{@auction.close_at}"
+    => link_to 'Edit', edit_my_auction_path(@auction)
+    '|
+    =< link_to 'Back', my_auctions_path
 
-br
-=> link_to 'Edit', edit_my_auction_path(@auction)
-'|
-=< link_to 'Back', my_auctions_path
