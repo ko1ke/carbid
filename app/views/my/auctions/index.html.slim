@@ -1,21 +1,21 @@
-h1 Listing my_auctions
+h2
+  | マイオークション
 
-table
-  thead
-    tr
-      th
-      th
-      th
-      th
+- @auctions.each do |auction|
+  .card
+    .card-header.d-inline-block
+      = auction.title
+      span.float-right
+        = link_to my_auction_url(auction), data: { confirm: '削除しますか？' }, method: :delete do
+          i.far.fa-trash-alt
+        end
+    .card-body
+      p.card-text
+        = auction.description
+      => link_to '詳細', my_auction_path(auction)
+      '|
+      =< link_to '編集', edit_my_auction_path(auction)
 
-  tbody
-    - @auctions.each do |auction|
-      tr
-        td = auction.title + ':'
-        td = link_to 'Show', my_auction_path(auction)
-        td = link_to 'Edit', edit_my_auction_path(auction)
-        td = link_to 'Destroy', my_auction_url(auction), data: { confirm: 'Are you sure?' }, method: :delete
+  br
 
-br
-
-= link_to 'New Auction', new_my_auction_path
+= link_to '新規オークション', new_my_auction_path, class: 'btn btn-block btn-primary'
