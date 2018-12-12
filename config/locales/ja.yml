@@ -1,4 +1,26 @@
 ja:
+  activerecord:
+    models:
+      maker: メーカー
+      user: ユーザー
+      auction: オークション
+      bid: 入札
+    attributes:
+      maker:
+        name: 名
+      auction:
+        maker_id: メーカー
+        title: タイトル
+        initial_price: 始値
+        close_at: 終了日時
+        description: 説明
+  helpers:
+    select:
+      prompt: 選択してください。
+    submit:
+      create: 登録
+      submit: 保存
+      update: 更新する
   date:
     formats:
       default: "%Y/%m/%d"
@@ -18,8 +40,19 @@ ja:
 
   time:
     formats:
-      default: "%Y/%m/%d %H:%M:%S"
+      default: "%Y/%m/%d %H:%M"
       short: "%y/%m/%d %H:%M"
-      long: "%Y年%m月%d日(%a) %H時%M分%S秒 %Z"
+      long: "%Y年%m月%d日(%a) %H時%M分"
     am: "午前"
     pm: "午後"
+
+  number:
+    currency:
+      format:
+        delimiter: ","
+        format: "%n%u"
+        precision: 0
+        separator: "."
+        significant: false
+        strip_insignificant_zeros: false
+        unit: 円
