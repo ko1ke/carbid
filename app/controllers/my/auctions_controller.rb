@@ -4,7 +4,7 @@ class My::AuctionsController < My::ApplicationController
   # GET /my/auctions
   # GET /my/auctions.json
   def index
-    @auctions = Auction.all
+    @auctions = current_user.owning_auctions.all
   end
 
   # GET /my/auctions/1
