@@ -20,6 +20,15 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  validates :name, presence: true
+  validates :tel, presence: true
+  validate :tel_must_be_number
   has_many :owning_auctions, class_name: 'Auction', dependent: :destroy
 
+  def tel_must_be_number
+    return if tel.empty?
+    unless tel.match(/\A\d+\z/)
+      errors.add(:tel, 'は数字のみで入力してください。')
+    end
+  end
 end
