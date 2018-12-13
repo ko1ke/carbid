@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_12_124241) do
+ActiveRecord::Schema.define(version: 2018_12_13_021242) do
 
   create_table "auctions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
@@ -26,6 +26,19 @@ ActiveRecord::Schema.define(version: 2018_12_12_124241) do
     t.index ["car_id"], name: "index_auctions_on_car_id"
     t.index ["maker_id"], name: "index_auctions_on_maker_id"
     t.index ["user_id"], name: "index_auctions_on_user_id"
+  end
+
+  create_table "bids", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "price"
+    t.text "suggestion"
+    t.string "image"
+    t.bigint "user_id"
+    t.bigint "auction_id"
+    t.boolean "accepted", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["auction_id"], name: "index_bids_on_auction_id"
+    t.index ["user_id"], name: "index_bids_on_user_id"
   end
 
   create_table "cars", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -60,5 +73,7 @@ ActiveRecord::Schema.define(version: 2018_12_12_124241) do
   add_foreign_key "auctions", "cars"
   add_foreign_key "auctions", "makers"
   add_foreign_key "auctions", "users"
+  add_foreign_key "bids", "auctions"
+  add_foreign_key "bids", "users"
   add_foreign_key "cars", "makers"
 end

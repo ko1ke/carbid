@@ -12,6 +12,7 @@
 #  maker_id      :bigint(8)
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  car_id        :bigint(8)
 #
 
 require 'rails_helper'
