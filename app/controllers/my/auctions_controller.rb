@@ -20,7 +20,7 @@ class My::AuctionsController < My::ApplicationController
 
     respond_to do |format|
       if @auction.save
-        format.html {redirect_to [:my, :auctions], notice: 'Auction was successfully created.'}
+        format.html {redirect_to [:my, :auctions], notice: 'オークションが作成されました。'}
         format.json {render :show, status: :created, location: @auction}
       else
         format.html {render :new}
@@ -32,7 +32,7 @@ class My::AuctionsController < My::ApplicationController
   def update
     respond_to do |format|
       if @auction.update(auction_params)
-        format.html {redirect_to [:my, :auctions], notice: 'Auction was successfully updated.'}
+        format.html {redirect_to [:my, :auctions], notice: 'オークションが更新されました。'}
         format.json {render :show, status: :ok, location: @auction}
       else
         format.html {render :edit}
@@ -44,7 +44,7 @@ class My::AuctionsController < My::ApplicationController
   def destroy
     @auction.destroy
     respond_to do |format|
-      format.html {redirect_to my_auctions_url, notice: 'Auction was successfully destroyed.'}
+      format.html {redirect_to my_auctions_url, notice: 'オークションが削除されました。'}
       format.json {head :no_content}
     end
   end

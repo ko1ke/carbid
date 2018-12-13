@@ -11,7 +11,7 @@ h2
         end
     .card-body
       p.card-text
-        = auction.description
+        = "#{auction.maker.name} #{auction.car.name}"
       => link_to '詳細', my_auction_path(auction)
       '|
       =< link_to '編集', edit_my_auction_path(auction)

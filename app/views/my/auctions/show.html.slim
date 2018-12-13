@@ -5,11 +5,14 @@ p#notice = notice
     = @auction.title
   .card-body
     p.card-text
-      = @auction.description
+      = "車：#{@auction.maker.name} #{@auction.car.name}"
     p.card-text
       = "始値：#{number_to_currency(@auction.initial_price)}"
     p.card-text
       = "終了時間：#{l(@auction.close_at, format: :long)}"
+
+    p.card-text
+      = @auction.description
     => link_to 'Edit', edit_my_auction_path(@auction)
     '|
     =< link_to 'Back', my_auctions_path
