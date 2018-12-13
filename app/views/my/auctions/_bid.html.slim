@@ -1,0 +1,20 @@
+.card
+  .card-header
+    = "#{bid.user.name}からの提案"
+  .card-body
+    .d-flex.flex-wrap
+      .order-1.p-6
+        - if bid.image
+          = image_tag bid.picture.url, size: '400x300'
+        - else
+          = image_tag 'no_image.png', size: '400x300', class: 'main-image'
+      .order-2.p-6
+        p.card-text
+          = "値段：#{bid.price}"
+        p.card-text
+          = "提案内容：#{bid.suggestion}"
+        p.card-text
+          = "メール：#{bid.user.email}"
+        p.card-text
+          = "電話：#{bid.user.tel}"
+br
