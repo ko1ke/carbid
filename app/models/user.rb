@@ -23,7 +23,13 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :tel, presence: true
   validate :tel_must_be_number
+
+  has_many :bids
+
+  # 自分が作成したオークション
   has_many :owning_auctions, class_name: 'Auction', dependent: :destroy
+  # 自分がビットしたオークション。自分のオークションにビッドは不可。
+  has_many :bidden_auctions, through: :bids, source: :auction
 
   def tel_must_be_number
     return if tel.empty?

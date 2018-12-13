@@ -9,6 +9,6 @@
 #
 
 class Maker < ApplicationRecord
-  has_many :cars, inverse_of: :maker
+  has_many :cars, inverse_of: :maker, dependent: :destroy
   validates :name, presence: true, uniqueness: true
 end

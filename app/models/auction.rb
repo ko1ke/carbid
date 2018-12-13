@@ -20,6 +20,10 @@ class Auction < ApplicationRecord
   belongs_to :maker
   belongs_to :car
 
+  has_many :bids, dependent: :destroy
+  # オークションにビッドしたユーザー（注：重複しうる）
+  has_many :bidders, through: :bids, source: :user
+
   validates :close_at, presence: true
   validates :user_id, presence: true
   validates :maker_id, presence: true

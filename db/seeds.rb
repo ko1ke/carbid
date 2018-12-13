@@ -27,3 +27,7 @@ puts '5 Users created'
 end
 
 puts '5 auctions created'
+
+5.times.each do |n|
+  Bid.create!(auction: Auction.first, user: User.last, price: 1000 + n * 1000, image: 'no_image.png', suggestion: 'Excellent car for you!')
+end
