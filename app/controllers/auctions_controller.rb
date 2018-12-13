@@ -1,5 +1,5 @@
 class AuctionsController < ApplicationController
   def index
-    @auctions = Auction.all
+    @auctions = Auction.all.ongoing
   end
 end

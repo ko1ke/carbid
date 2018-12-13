@@ -1,6 +1,22 @@
-h1
-  | Auctions
+h2
+  | オークション
 - @auctions.each do |auction|
-  = auction.inspect
+  .card
+    .card-header.d-inline-block
+      = auction.title
+    .card-body
+      p.card-text
+        = "ターゲット：#{auction.maker.name} #{auction.car.name}"
+      p.card-text
+        = "始値：#{number_to_currency(auction.initial_price)}"
+      - if auction.bidden?
+        p.card-text
+          = "最安入札額：#{number_to_currency(auction.min_price)}"
+      - else
+        p.card-text
+          = "最安入札額：まだ入札がありません"
+      p.card-text
+        = "終了時間：#{l(auction.close_at, format: :long)}"
+      p.card-text
+        = auction.description
   br
-

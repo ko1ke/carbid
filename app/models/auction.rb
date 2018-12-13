@@ -38,6 +38,18 @@ class Auction < ApplicationRecord
 
   scope :ongoing, -> { where(closed: false) }
 
+  def min_price
+    if bidden?
+      bids.minimum(:price)
+    else
+      initial_price
+    end
+  end
+
+  def bidden?
+    bidders.exists?
+  end
+
   def close_at_must_be_future
     if close_at <= Time.now
       errors.add(:close_at, 'は現在以降の日時を設定してください')
