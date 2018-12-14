@@ -1,0 +1,26 @@
+ja:
+  activerecord:
+    models:
+      maker: メーカー
+      user: ユーザー
+      car: 車
+      auction: オークション
+      bid: 入札
+    attributes:
+      maker:
+        name: 名
+      auction:
+        maker_id: メーカー
+        car_id: 車名
+        title: タイトル
+        initial_price: 始値
+        close_at: 終了日時
+        description: 説明
+      car:
+        name: 名
+      bid:
+        price: 提示額
+        suggestion: 提案内容
+        image: 画像
+        accepted: 落札決定
+        accepted: 落札決定
