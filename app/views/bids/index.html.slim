@@ -1,9 +1,26 @@
 h2 入札一覧
 
+- if user_signed_in?
+  = link_to '新規入札', new_auction_bid_path, class: 'btn btn-block btn-primary'
+  br
+- else
+  p = '入札する場合はログインしてください。'
+
 - @bids.each do |bid|
-  = bid.inspect
+  .card
+    .card-header
+      = "#{bid.user.name}からの提案"
+    .card-body
+      .d-flex.flex-wrap
+        .order-1.p-6
+          - if bid.image.present?
+            = image_tag bid.image.thumbnail.url, class: 'thumbnail'
+          - else
+            = image_tag 'no_image.png', size: '200x150', class: 'thumbnail'
+        .order-2.p-6
+          p.card-text
+            = "提示額：#{number_to_currency(bid.price)}"
+          p.card-text
+            = "提案内容：#{bid.suggestion}"
   br
 
-br
-
-= link_to 'New Bid', new_auction_bid_path

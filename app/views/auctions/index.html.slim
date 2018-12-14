@@ -4,12 +4,11 @@ h2
   .card
     .card-header.d-inline-block
       = auction.title
-      - if user_signed_in?
-        span.float-right
-          = link_to auction_bids_path(auction) do
-            i.fas.fa-hand-holding-heart
-              |  入札する
-          end
+      span.float-right
+        = link_to auction_bids_path(auction) do
+          i.fas.fa-hand-holding-heart
+            |  入札一覧へ
+        end
     .card-body
       p.card-text
         = "ターゲット：#{auction.maker.name} #{auction.car.name}"
