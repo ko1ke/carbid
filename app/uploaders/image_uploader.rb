@@ -1,5 +1,6 @@
 class ImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::RMagick
+  include Piet::CarrierWaveExtension
 
   # Choose what kind of storage to use for this uploader:
   storage :file
@@ -13,6 +14,8 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # Process files as they are uploaded:
   process :resize_to_limit => [800, 800]
+  process convert: 'jpg'
+  process optimize: [quality: 70]
 
   # Create different versions of your uploaded files:
   version :main_image do
@@ -30,7 +33,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
-  # def filename
-  #   "something.jpg" if original_filename
-  # end
+  def filename
+    super.chomp(File.extname(super)) + '.jpg' if original_filename.present?
+  end
 end
