@@ -9,14 +9,14 @@ class My::AuctionsController < My::ApplicationController
   end
 
   def new
-    @auction = Auction.new
+    @auction = current_user.owning_auctions.new
   end
 
   def edit
   end
 
   def create
-    @auction = Auction.new(auction_params)
+    @auction = current_user.owning_auctions.new(auction_params)
 
     respond_to do |format|
       if @auction.save

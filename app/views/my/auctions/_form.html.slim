@@ -6,7 +6,6 @@
     - if current_page?(action: 'new')
       = f.input :maker_id, as: :select, collection: Maker.all
       = f.input :car_id, as: :select, collection: Car.all
-      = f.input :user_id, as: :hidden, input_html: {value: current_user.id}
       = f.input :initial_price
       .datetime-inputs
         = f.input :close_at
