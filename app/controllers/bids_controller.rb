@@ -15,7 +15,8 @@ class BidsController < ApplicationController
 
     respond_to do |format|
       if @bid.save
-        format.html { redirect_to auction_bids_url, notice: '新規入札されました。' }
+        format.html do redirect_to auction_bids_url, notice: '新規入札が登録されました'
+        end
       else
         format.html { render :new }
       end
@@ -32,6 +33,7 @@ class BidsController < ApplicationController
       params.require(:bid).permit(:price,
                                   :suggestion,
                                   :image,
+                                  :image_cache,
                                   :auction_id)
     end
 end

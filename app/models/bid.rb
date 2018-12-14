@@ -16,6 +16,20 @@
 class Bid < ApplicationRecord
   mount_uploader :image, ImageUploader
 
+  validates :suggestion, presence: true
+  validates :price, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 0}
+
+  validate :new_price_must_be_lowest
+
   belongs_to :user
   belongs_to :auction
+
+  def new_price_must_be_lowest
+    return if price.nil?
+    # where.notは画面から入力したレコードをはねるための処置
+    min_price = auction.bids.where.not(id: nil).minimum(:price) || auction.initial_price
+    if price >= min_price
+      errors.add(:price, "は 「#{min_price}」より低い額を入力してください。")
+    end
+  end
 end
