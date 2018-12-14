@@ -1,24 +1,18 @@
-# README
+# What is it?
+Reverse auction app for cars.
+It is under construction yet.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Todo
+- [x] user (devise)
+- [x] auction
+- [ ] bid
+- [ ] test (rspec)
+- [ ] breadcrumb (gretel)
+- [ ] search (ransack) 
+- [ ] view counter
+- [ ] auction close function
 
-Things you may want to cover:
 
-* Ruby version
+## If necessary
+- [ ] pundit and sti
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
