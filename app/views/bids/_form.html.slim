@@ -1,8 +1,9 @@
-= simple_form_for(@bid) do |f|
+= simple_form_for([@auction, @bid]) do |f|
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
-  .form-inputs
-
-  .form-actions
-    = f.button :submit
+  .form-controls
+    = f.input :price
+    = f.input :suggestion, input_html: {rows: 10}
+    = f.input :image, as: :file
+    = f.button :submit, class: 'btn btn-primary btn-block'
