@@ -1,0 +1,24 @@
+.card
+  .card-header
+    = "#{@bid.user.name}からの提案"
+  .card-body
+    .d-flex.flex-wrap
+      .order-1.p-6
+        - if @bid.image.present?
+          = image_tag @bid.image.thumbnail.url, class: 'thumbnail'
+        - else
+          = image_tag 'no_image.png', size: '200x150', class: 'thumbnail'
+      .order-2.p-6
+        p.card-text
+          = "提示額：#{number_to_currency(@bid.price)}"
+        p.card-text
+          = "提案内容：#{@bid.suggestion}"
+br
+
+= simple_form_for(@bid, url: [:my, @auction, @bid]) do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  .form-controls
+    = f.input :accepted, as: :hidden, input_html: { value: true }
+    = f.button :submit, 'この内容で購入する', class: 'btn btn-primary btn-block'

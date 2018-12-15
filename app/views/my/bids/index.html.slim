@@ -33,4 +33,6 @@ h2
             = "メール：#{bid.user.email}"
           p.card-text
             = "電話：#{bid.user.tel}"
+
+          = link_to '購入する', edit_my_auction_bid_path(@auction, bid)
 br

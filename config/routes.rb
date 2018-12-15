@@ -7,8 +7,7 @@ Rails.application.routes.draw do
 
   namespace :my do
     resources :auctions, except: [:show] do
-      resources :bids, only: [:index]
+      resources :bids, only: [:index, :edit, :update]
     end
   end
-
 end

@@ -19,7 +19,7 @@ class Bid < ApplicationRecord
   validates :suggestion, presence: true
   validates :price, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 0}
 
-  validate :new_price_must_be_lowest
+  validate :new_price_must_be_lowest, on: :create
 
   belongs_to :user
   belongs_to :auction
