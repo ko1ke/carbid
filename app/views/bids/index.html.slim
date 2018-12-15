@@ -1,10 +1,11 @@
-h2 入札一覧
-
 - if user_signed_in?
-  = link_to '新規入札', new_auction_bid_path, class: 'btn btn-block btn-primary'
+  = link_to '新規入札する', new_auction_bid_path, class: 'btn btn-block btn-primary'
   br
 - else
   p = '入札する場合はログインしてください。'
+
+h2
+  | 入札一覧
 
 - @bids.each do |bid|
   .card
