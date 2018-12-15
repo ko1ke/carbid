@@ -1,10 +1,8 @@
-p#notice = notice
-
 h2
   | オークション詳細
 
 .jumbotron
-  h3 = @auction.title
+  h3 = "#{@auction.title}（#{mention_status(@auction.closed)}）"
   p = "ターゲット：#{@auction.maker.name} #{@auction.car.name}"
   p = "始値：#{number_to_currency(@auction.initial_price)}"
   p = "終了時間：#{l(@auction.close_at, format: :long)}"
@@ -34,5 +32,5 @@ h2
           p.card-text
             = "電話：#{bid.user.tel}"
 
-          = link_to '購入する', edit_my_auction_bid_path(@auction, bid)
+          = link_to '購入する', edit_my_auction_bid_path(@auction, bid) unless @auction.closed?
 br

@@ -10,7 +10,7 @@ It is under construction yet.
 - [ ] breadcrumb (gretel)
 - [ ] search (ransack) 
 - [ ] view counter
-- [ ] auction close function
+- [ ] auction close function (2 patterns, by time up, by accepted:true on Auction)
 
 
 ## If necessary

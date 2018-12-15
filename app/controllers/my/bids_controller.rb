@@ -11,7 +11,7 @@ class My::BidsController < My::ApplicationController
 
   def update
     respond_to do |format|
-      if @bid.save(bid_params)
+      if @bid.save(bid_params) && @auction.update(closed: true)
         format.html {redirect_to [:my, :auction, :bids], notice: '購入しました'}
       else
         format.html {render :edit}
