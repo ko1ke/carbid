@@ -1,11 +1,8 @@
 class My::AuctionsController < My::ApplicationController
-  before_action :set_auction, only: [:show, :edit, :update, :destroy]
+  before_action :set_auction, only: [:edit, :update, :destroy]
 
   def index
     @auctions = current_user.owning_auctions.all
-  end
-
-  def show
   end
 
   def new
@@ -21,10 +18,8 @@ class My::AuctionsController < My::ApplicationController
     respond_to do |format|
       if @auction.save
         format.html {redirect_to [:my, :auctions], notice: 'オークションが作成されました。'}
-        format.json {render :show, status: :created, location: @auction}
       else
         format.html {render :new}
-        format.json {render json: @auction.errors, status: :unprocessable_entity}
       end
     end
   end
@@ -33,10 +28,8 @@ class My::AuctionsController < My::ApplicationController
     respond_to do |format|
       if @auction.update(auction_params)
         format.html {redirect_to [:my, :auctions], notice: 'オークションが更新されました。'}
-        format.json {render :show, status: :ok, location: @auction}
       else
         format.html {render :edit}
-        format.json {render json: @auction.errors, status: :unprocessable_entity}
       end
     end
   end
@@ -45,7 +38,6 @@ class My::AuctionsController < My::ApplicationController
     @auction.destroy
     respond_to do |format|
       format.html {redirect_to my_auctions_url, notice: 'オークションが削除されました。'}
-      format.json {head :no_content}
     end
   end
 

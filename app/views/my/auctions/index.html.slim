@@ -1,5 +1,7 @@
+= link_to '新規オークション作成', new_my_auction_path, class: 'btn btn-block btn-primary'
+br
 h2
-  | マイオークション
+  | マイオークション一覧
 
 - @auctions.each do |auction|
   .card
@@ -12,10 +14,9 @@ h2
     .card-body
       p.card-text
         = "ターゲット：#{auction.maker.name} #{auction.car.name}"
-      => link_to '詳細', my_auction_path(auction)
+      => link_to '入札一覧', my_auction_bids_path(auction)
       '|
       =< link_to '編集', edit_my_auction_path(auction)
 
   br
 
-= link_to '新規オークション', new_my_auction_path, class: 'btn btn-block btn-primary'

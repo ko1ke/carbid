@@ -1,0 +1,36 @@
+p#notice = notice
+
+h2
+  | オークション詳細
+
+.jumbotron
+  h3 = @auction.title
+  p = "ターゲット：#{@auction.maker.name} #{@auction.car.name}"
+  p = "始値：#{number_to_currency(@auction.initial_price)}"
+  p = "終了時間：#{l(@auction.close_at, format: :long)}"
+  p = @auction.description
+
+h2
+  | 入札一覧
+
+- @bids.each do |bid|
+  .card
+    .card-header
+      = "#{bid.user.name}からの提案"
+    .card-body
+      .d-flex.flex-wrap
+        .order-1.p-6
+          - if bid.image.present?
+            = image_tag bid.image.main_image.url, class: 'main-image'
+          - else
+            = image_tag 'no_image.png', size: '400x300', class: 'main-image'
+        .order-2.p-6
+          p.card-text
+            = "提示額：#{number_to_currency(bid.price)}"
+          p.card-text
+            = "提案内容：#{bid.suggestion}"
+          p.card-text
+            = "メール：#{bid.user.email}"
+          p.card-text
+            = "電話：#{bid.user.tel}"
+br
