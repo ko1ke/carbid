@@ -3,7 +3,7 @@
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
   .form-controls
-    - if current_page?(action: 'new')
+    - if controller.action_name =~ /new|create/
       = f.input :maker_id, as: :select, collection: Maker.all
       = f.input :car_id, as: :select, collection: Car.all
       = f.input :initial_price
