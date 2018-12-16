@@ -24,6 +24,8 @@ class Bid < ApplicationRecord
   belongs_to :user
   belongs_to :auction
 
+  private
+
   def new_price_must_be_lowest
     return if price.nil?
     # where.notは画面から入力したレコードをはねるための処置

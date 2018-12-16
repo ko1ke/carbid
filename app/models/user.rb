@@ -34,6 +34,8 @@ class User < ApplicationRecord
 
   validate :tel_must_be_number
 
+  private
+
   def tel_must_be_number
     return if tel.empty?
     unless tel.match(/\A\d+\z/)

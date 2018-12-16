@@ -54,6 +54,8 @@ class Auction < ApplicationRecord
     bidders.exists?
   end
 
+  private
+
   def close_at_must_be_future
     if close_at <= Time.now
       errors.add(:close_at, 'は現在以降の日時を設定してください')
