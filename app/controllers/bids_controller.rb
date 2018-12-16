@@ -2,7 +2,7 @@ class BidsController < ApplicationController
   before_action :set_auction
 
   def index
-    @bids = @auction.bids.all
+    @bids = @auction.bids.all.includes(:user)
   end
 
   def new

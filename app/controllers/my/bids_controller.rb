@@ -3,7 +3,7 @@ class My::BidsController < My::ApplicationController
   before_action :set_bid, only: [:edit, :update]
 
   def index
-    @bids = @auction.bids.all
+    @bids = @auction.bids.all.includes(:user)
   end
 
   def edit
