@@ -19,6 +19,7 @@ class Auction < ApplicationRecord
   belongs_to :user
   belongs_to :maker
   belongs_to :car
+  delegate :cars, to: :maker
 
   has_many :bids, dependent: :destroy
   # オークションにビッドしたユーザー（注：重複しうる）
@@ -58,10 +59,9 @@ class Auction < ApplicationRecord
   end
 
   def car_must_have_relationship_with_maker
-    return if (car_id.nil? || maker_id.nil?)
+    return if car_id.nil?
     car = Car.find_by(id: car_id)
-    maker = Maker.find_by(id: maker_id)
-    if car.maker != maker
+    unless cars.include?(car)
       errors.add(:car_id, 'が選択したメーカーにはラインナップされていません。')
     end
   end
