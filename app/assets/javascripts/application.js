@@ -17,3 +17,8 @@
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require_tree .
+
+// ToolTip
+$(document).on('turbolinks:load', function () {
+    $('[data-toggle="tooltip"]').tooltip()
+});

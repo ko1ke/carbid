@@ -20,9 +20,9 @@ html
           ul.nav.nav-tabs
             - if current_user
               li.nav-item
-                = link_to 'オークション管理', my_auctions_path, class: "nav-link #{active?(my_auctions_path)}"
+                = link_to 'オークション管理／購入', my_auctions_path, class: "nav-link #{active?(my_auctions_path)}"
             li.nav-item
-              = link_to 'オークション閲覧・入札', root_path, class: "nav-link #{active?(root_path)}"
+              = link_to 'オークション閲覧／入札', root_path, class: "nav-link #{active?(root_path)}"
             li.nav-item.dropdown.ml-md-auto
               a#navbarDropdownMenuLink.nav-link.dropdown-toggle[href="http://example.com" data-toggle="dropdown"]
                 | ユーザー管理

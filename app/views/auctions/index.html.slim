@@ -1,5 +1,5 @@
 h2
-  | オークション
+  | 開催中のオークション
 
 = render 'search'
 hr
@@ -10,8 +10,7 @@ hr
       = auction.title
       span.float-right
         = link_to auction_bids_path(auction) do
-          i.fas.fa-hand-holding-heart
-            |  入札一覧へ
+          i.fas.fa-gavel data-placement="top" data-toggle="tooltip" title=("入札／入札一覧")
         end
     .card-body
       p.card-text
