@@ -16,13 +16,11 @@
 #
 
 class User < ApplicationRecord
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  validates :name, presence: true
-  validates :tel, presence: true
-  validate :tel_must_be_number
 
   has_many :bids
 
@@ -30,6 +28,11 @@ class User < ApplicationRecord
   has_many :owning_auctions, class_name: 'Auction', dependent: :destroy
   # 自分がビットしたオークション。自分のオークションにビッドは不可。
   has_many :bidden_auctions, through: :bids, source: :auction
+
+  validates :name, presence: true
+  validates :tel, presence: true
+
+  validate :tel_must_be_number
 
   def tel_must_be_number
     return if tel.empty?

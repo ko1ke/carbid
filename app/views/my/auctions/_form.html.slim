@@ -4,6 +4,7 @@
 
   .form-controls
     - if controller.action_name =~ /new|create/
+      = f.input :user_id, as: :hidden
       = f.input :maker_id, as: :select, collection: Maker.all
       = f.input :car_id, as: :select, collection: Car.all
       = f.input :initial_price

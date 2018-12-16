@@ -22,11 +22,11 @@ end
 
 puts '5 Users created'
 
-5.times.each do |n|
+3.times.each do |n|
   Auction.create!(maker: Maker.first, user: User.first, car: Car.first, close_at: DateTime.now + 1.day, closed:false, title: "auction_#{n}", description: "An auction #{n}, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", initial_price: 10000)
 end
 
-puts '5 auctions created'
+puts '3 auctions created'
 
 5.times.each do |n|
   Bid.create!(auction: Auction.first, user: User.last, price: 10000 - n - 1, suggestion: 'Excellent car for you!')

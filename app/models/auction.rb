@@ -35,6 +35,7 @@ class Auction < ApplicationRecord
 
   validate :close_at_must_be_future
   validate :car_must_have_relationship_with_maker
+  validate :size_limit_ongoing_auctions
 
   scope :ongoing, -> { where(closed: false) }
 
@@ -62,6 +63,13 @@ class Auction < ApplicationRecord
     maker = Maker.find_by(id: maker_id)
     if car.maker != maker
       errors.add(:car_id, 'が選択したメーカーにはラインナップされていません。')
+    end
+  end
+
+  def size_limit_ongoing_auctions
+    limit_size = 3
+    if user.owning_auctions.where(closed: false).size >= limit_size
+      errors.add(:user_id, "1人につき開催できるオークションは最大#{limit_size}つまでです。")
     end
   end
 end
