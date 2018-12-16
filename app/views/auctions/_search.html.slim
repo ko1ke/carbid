@@ -1,0 +1,14 @@
+= search_form_for(@q, url:root_path) do |f|
+  = f.label :maker_id_in, 'メーカー：'
+  = f.collection_check_boxes :maker_id_in, Maker.all, :id, :name
+  br
+  = f.label :car_id_in, '車名：'
+  = f.select :car_id_in, Car.all.map {|c| [c.name, c.id]}
+  br
+  = f.label :title_cont, 'タイトル：'
+  = f.search_field :title_cont
+  br
+  = f.label :initial_price_lteq, '始値：'
+  = f.number_field :initial_price_lteq
+  br
+  = f.submit

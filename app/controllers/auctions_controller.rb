@@ -1,5 +1,6 @@
 class AuctionsController < ApplicationController
   def index
-    @auctions = Auction.all.ongoing.includes(:car, :maker)
+    @q = Auction.ongoing.includes(:car, :maker).ransack(params[:q])
+    @auctions = @q.result
   end
 end
