@@ -1,14 +1,22 @@
-= search_form_for(@q, url:root_path) do |f|
-  = f.label :maker_id_in, 'メーカー：'
-  = f.collection_check_boxes :maker_id_in, Maker.all, :id, :name
-  br
-  = f.label :car_id_in, '車名：'
-  = f.select :car_id_in, Car.all.map {|c| [c.name, c.id]}
-  br
-  = f.label :title_cont, 'タイトル：'
-  = f.search_field :title_cont
-  br
-  = f.label :initial_price_lteq, '始値：'
-  = f.number_field :initial_price_lteq
-  br
-  = f.submit
+.jumbotron
+  h3
+    | 検索
+  = search_form_for(@q, url:root_path) do |f|
+    .form-row
+      = f.label :maker_id_in, 'メーカー：'
+      = f.collection_check_boxes :maker_id_in, Maker.all, :id, :name do |b|
+        =< b.label { b.check_box + ' ' + b.text + '　'}
+
+    .form-row
+      .form-inline.mr-2
+        = f.label :car_id_in, '車名：'
+        = f.select :car_id_in, Car.all.map {|c| [c.name, c.id]}, include_blank: true
+      .form-inline.mr-2
+        = f.label :title_cont, 'タイトル：'
+        = f.search_field :title_cont, class: 'form-control-sm', placeholder: '文字で検索'
+      .form-inline.mr-2
+        = f.label :initial_price_lteq, '始値：'
+        = f.number_field :initial_price_lteq, class: 'form-control-sm', placeholder: '指定値以下で検索'
+
+    br
+    = f.button '検索する', class: 'btn btn-block'
