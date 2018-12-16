@@ -7,7 +7,7 @@ It is under construction yet.
 - [x] auction
 - [ ] bid
 - [ ] test (rspec)
-- [ ] breadcrumb (gretel)
+- [x] breadcrumb (gretel)
 - [x] search (ransack) 
 - [ ] view counter
 - [ ] auction close function (2 patterns, by time up, by accepted:true on Auction)
