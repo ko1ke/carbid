@@ -9,6 +9,7 @@ hr
     .card-header.d-inline-block
       = auction.title
       span.float-right
+        i.far.fa-eye.mr-3 = auction.impressionist_count
         = link_to auction_bids_path(auction) do
           i.fas.fa-gavel data-placement="top" data-toggle="tooltip" title=("入札／入札一覧")
         end

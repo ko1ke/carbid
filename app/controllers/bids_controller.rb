@@ -3,6 +3,7 @@ class BidsController < ApplicationController
 
   def index
     @bids = @auction.bids.all.includes(:user)
+    impressionist(@auction, nil, unique: [:session_hash])
   end
 
   def new

@@ -9,7 +9,7 @@ It is under construction yet.
 - [ ] test (rspec)
 - [x] breadcrumb (gretel)
 - [x] search (ransack) 
-- [ ] view counter
+- [x] view counter
 - [ ] auction close function (2 patterns, by time up, by accepted:true on Auction)
 
 

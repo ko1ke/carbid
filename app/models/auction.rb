@@ -16,6 +16,8 @@
 #
 
 class Auction < ApplicationRecord
+  is_impressionable
+
   belongs_to :user
   belongs_to :maker
   belongs_to :car
