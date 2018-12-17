@@ -14,6 +14,10 @@ module Carbid
     config.time_zone = 'Tokyo'
     config.active_record.default_timezone = :local
 
+    # For Whenever
+    config.autoload_paths += Dir["#{config.root}/lib/**/"]
+    config.eager_load_paths += Dir["#{config.root}/lib/**/"]
+
     config.generators do |g|
       g.template_engine :slim
       g.test_framework :rspec,

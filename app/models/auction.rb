@@ -36,11 +36,17 @@ class Auction < ApplicationRecord
   validates :close_at, presence: true
   validates :initial_price, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 0}
 
-  validate :close_at_must_be_future
+  validate :close_at_must_be_future, on: :create
   validate :car_must_have_relationship_with_maker
   validate :size_limit_ongoing_auctions, on: :create
 
-  scope :ongoing, -> { where(closed: false) }
+  scope :ongoing, -> {
+    where(closed: false)
+  }
+
+  scope :must_be_closed, -> {
+    where('close_at <= ? AND closed = ?', DateTime.now, false)
+  }
 
   def min_price
     if bidden?
@@ -52,6 +58,13 @@ class Auction < ApplicationRecord
 
   def bidden?
     bidders.exists?
+  end
+
+  def accept_and_close
+    if cheapest_bid = bids.last
+      cheapest_bid.update!(accepted: true)
+    end
+    self.update!(closed: true)
   end
 
   private
