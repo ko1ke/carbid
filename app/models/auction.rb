@@ -38,7 +38,7 @@ class Auction < ApplicationRecord
 
   validate :close_at_must_be_future
   validate :car_must_have_relationship_with_maker
-  validate :size_limit_ongoing_auctions
+  validate :size_limit_ongoing_auctions, on: :create
 
   scope :ongoing, -> { where(closed: false) }
 
