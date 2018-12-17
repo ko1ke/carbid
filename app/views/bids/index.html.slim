@@ -23,6 +23,6 @@ h2
           p.card-text
             = "提示額：#{number_to_currency(bid.price)}"
           p.card-text
-            = "提案内容：#{bid.suggestion}"
+            = simple_format(h(bid.suggestion))
   br
 

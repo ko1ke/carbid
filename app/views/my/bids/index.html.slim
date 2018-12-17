@@ -23,11 +23,7 @@ h2
           p.card-text
             = "提示額：#{number_to_currency(bid.price)}"
           p.card-text
-            = "提案内容：#{bid.suggestion}"
-          p.card-text
-            = "メール：#{bid.user.email}"
-          p.card-text
-            = "電話：#{bid.user.tel}"
+            = simple_format(h(bid.suggestion))
 
           = link_to '購入する', edit_my_auction_bid_path(@auction, bid), class: 'btn btn-primary' unless @auction.closed?
 br

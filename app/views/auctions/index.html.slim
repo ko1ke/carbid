@@ -27,5 +27,5 @@ hr
       p.card-text
         = "終了時間：#{l(auction.close_at, format: :long)}"
       p.card-text
-        = auction.description
+        = simple_format(h(auction.description))
   br

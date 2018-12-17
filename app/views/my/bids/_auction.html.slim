@@ -3,4 +3,4 @@
   p = "ターゲット：#{@auction.maker.name} #{@auction.car.name}"
   p = "始値：#{number_to_currency(@auction.initial_price)}"
   p = "終了時間：#{l(@auction.close_at, format: :long)}"
-  p = @auction.description
+  p = simple_format(h(@auction.description))
