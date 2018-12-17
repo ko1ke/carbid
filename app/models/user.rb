@@ -25,7 +25,7 @@ class User < ApplicationRecord
   has_many :bids
 
   # 自分が作成したオークション
-  has_many :owning_auctions, class_name: 'Auction', dependent: :destroy
+  has_many :owning_auctions, -> {includes(:maker, :car)}, class_name: 'Auction', dependent: :destroy
   # 自分がビットしたオークション。自分のオークションにビッドは不可。
   has_many :bidden_auctions, through: :bids, source: :auction
 

@@ -2,7 +2,7 @@ class My::AuctionsController < My::ApplicationController
   before_action :set_auction, only: [:edit, :update, :destroy]
 
   def index
-    @auctions = current_user.owning_auctions.all.includes(:maker, :car)
+    @auctions = current_user.owning_auctions
   end
 
   def new

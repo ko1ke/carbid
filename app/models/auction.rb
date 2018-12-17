@@ -41,11 +41,13 @@ class Auction < ApplicationRecord
   validate :size_limit_ongoing_auctions, on: :create
 
   scope :ongoing, -> {
-    where(closed: false)
+    includes(:maker, :car).where(closed: false)
+        .order(created_at: :desc)
   }
 
   scope :must_be_closed, -> {
-    where('close_at <= ? AND closed = ?', DateTime.now, false)
+    includes(:maker, :car, :user)
+        .where('close_at <= ? AND closed = ?', DateTime.now, false)
   }
 
   def min_price
@@ -61,7 +63,7 @@ class Auction < ApplicationRecord
   end
 
   def accept_and_close
-    if cheapest_bid = bids.last
+    if cheapest_bid = bids.includes(:user).last
       cheapest_bid.update!(accepted: true)
     end
     self.update!(closed: true)

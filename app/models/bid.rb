@@ -24,6 +24,10 @@ class Bid < ApplicationRecord
   belongs_to :user
   belongs_to :auction
 
+  scope :asc_price, -> {
+    includes(:user).order(:price)
+  }
+
   private
 
   def new_price_must_be_lowest

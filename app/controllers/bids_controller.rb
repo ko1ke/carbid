@@ -2,7 +2,7 @@ class BidsController < ApplicationController
   before_action :set_auction
 
   def index
-    @bids = @auction.bids.all.includes(:user)
+    @bids = @auction.bids.asc_price
     impressionist(@auction, nil, unique: [:session_hash])
   end
 
