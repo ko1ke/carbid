@@ -10,7 +10,7 @@
       = f.input :car_id, as: :select, collection: Car.all
       = f.input :initial_price
       .datetime-inputs
-        = f.input :close_at
+        = f.input :close_at, default: @auction.default_close_time
     = f.input :title
     = f.input :description, input_html: {rows: 10}
     = f.button :submit, class: 'btn btn-primary btn-block'

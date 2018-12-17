@@ -17,6 +17,7 @@
 
 class Auction < ApplicationRecord
   is_impressionable
+  attribute :default_close_time, :datetime, default: -> { DateTime.now + 1.week }
 
   belongs_to :user
   belongs_to :maker
