@@ -26,4 +26,5 @@ h2
             = simple_format(h(bid.suggestion))
 
           = link_to '購入する', edit_my_auction_bid_path(@auction, bid), class: 'btn btn-primary' unless @auction.closed?
-br
+          = sold_label(bid.accepted)
+  br

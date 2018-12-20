@@ -8,10 +8,10 @@ h2
     .card-header.d-inline-block
       = "#{auction.title}（#{mention_status(auction.closed)}）"
       span.float-right
-        = link_to my_auction_bids_path(auction) do
+        = link_to my_auction_bids_path(auction), data: {"turbolinks" => false} do
           i.fas.fa-gavel.mr-3 data-placement="top" data-toggle="tooltip" title=("入札一覧／購入")
         end
-        = link_to edit_my_auction_path(auction) do
+        = link_to edit_my_auction_path(auction), data: {"turbolinks" => false} do
           i.fas.fa-edit.mr-3 data-placement="top" data-toggle="tooltip" title=("編集")
         end
         = link_to my_auction_url(auction), data: { confirm: '削除しますか？' }, method: :delete do

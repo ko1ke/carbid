@@ -28,3 +28,9 @@
 .thumbnail {
   margin: 0 20px 5px 0;
 }
+
+.sold-label {
+  @extend .bg-success;
+  @extend .text-center;
+  border-radius: 10px;
+}

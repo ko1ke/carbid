@@ -20,5 +20,5 @@ br
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
   .form-controls
-    = f.input :accepted, as: :hidden, input_html: { value: true }
+    = f.hidden_field :accepted, as: :hidden, value: true
     = f.button :submit, 'この内容で購入する', class: 'btn btn-primary btn-block'
