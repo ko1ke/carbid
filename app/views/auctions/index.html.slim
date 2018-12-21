@@ -10,10 +10,13 @@ hr
       = auction.title
       span.float-right
         i.far.fa-eye.mr-3 = auction.impressionist_count
-        = link_to auction_bids_path(auction), data: {"turbolinks" => false} do
-          i.fas.fa-gavel data-placement="top" data-toggle="tooltip" title=("入札／入札一覧")
-        end
+        - unless auction.my_auction?(current_user)
+          = link_to auction_bids_path(auction), data: {"turbolinks" => false} do
+            i.fas.fa-gavel data-placement="top" data-toggle="tooltip" title=("入札／入札一覧")
+          end
     .card-body
+      p.card-text
+        = "開催者：#{auction.user.name}"
       p.card-text
         = "ターゲット：#{auction.maker.name} #{auction.car.name}"
       p.card-text

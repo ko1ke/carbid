@@ -59,6 +59,11 @@ class Auction < ApplicationRecord
     end
   end
 
+  def my_auction?(current_user)
+    return false if current_user.nil?
+    user_id == current_user.id ? true : false
+  end
+
   def bidden?
     bidders.exists?
   end
