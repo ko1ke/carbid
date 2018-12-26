@@ -8,10 +8,8 @@
 #  updated_at :datetime         not null
 #
 
-require 'rails_helper'
-
-RSpec.describe Maker, type: :model do
-  it 'should build factory' do
-    expect(FactoryBot.build(:maker)).to be_valid
+FactoryBot.define do
+  factory :maker do
+    sequence(:name) { |n| "maker_#{n}" }
   end
 end

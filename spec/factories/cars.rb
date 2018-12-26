@@ -9,10 +9,9 @@
 #  updated_at :datetime         not null
 #
 
-require 'rails_helper'
-
-RSpec.describe Car, type: :model do
-  it 'should build factory' do
-    expect(FactoryBot.build(:car)).to be_valid
+FactoryBot.define do
+  factory :car do
+    sequence(:name) { |n| "car_#{n}" }
+    maker
   end
 end

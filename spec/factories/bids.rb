@@ -11,12 +11,13 @@
 #  accepted   :boolean          default(FALSE)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#
 
-require 'rails_helper'
 
-RSpec.describe Bid, type: :model do
-  it 'should build factory' do
-      expect(FactoryBot.build(:bid)).to be_valid
-    end
+FactoryBot.define do
+  factory :bid do
+    user
+    auction
+    suggestion {'Awesome Suggestion'}
+    price {9000}
+  end
 end

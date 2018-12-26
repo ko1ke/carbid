@@ -15,21 +15,16 @@
 #  avatar                 :string(255)
 #
 
-require 'rails_helper'
+FactoryBot.define do
 
-RSpec.describe User, type: :model do
-  describe "Creation" do
+  factory :user do
+    sequence(:name) { |n| "TEST_NAME_#{n}" }
+    password {'passoword'}
+    sequence(:email) {|n| "test_#{n}@test.com"}
+    tel {'00000000000'}
 
-    it 'should have tel' do
-      expect(FactoryBot.build(:user, :no_tel)).not_to be_valid
-    end
-
-    it 'tel should be numbers string' do
-      n = rand(1..11)
-      random_num = format("%0#{n}d", SecureRandom.random_number(10**n))
-      user = (FactoryBot.build(:user))
-      user.tel = random_num
-      expect(user).to be_valid
+    trait :no_tel do
+      tel {''}
     end
   end
 end

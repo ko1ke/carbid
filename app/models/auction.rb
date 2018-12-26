@@ -22,6 +22,7 @@ class Auction < ApplicationRecord
   belongs_to :user
   belongs_to :maker
   belongs_to :car
+
   delegate :cars, to: :maker
 
   has_many :bids, dependent: :destroy

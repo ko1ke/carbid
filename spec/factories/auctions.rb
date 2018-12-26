@@ -14,26 +14,16 @@
 #  updated_at    :datetime         not null
 #  car_id        :bigint(8)
 #
-
-require 'rails_helper'
-
-RSpec.describe Auction, type: :model do
-  before do
-    @auction = FactoryBot.create(:auction)
-    @maker =  FactoryBot.create(:maker)
-    @car = Car.create(maker: @maker, name: 'hoge')
-  end
-
-  describe 'Creation' do
-    it 'should be required user association' do
-      @auction.user_id = nil
-      expect(@auction).not_to be_valid
-    end
-
-    it 'should maker has correct car' do
-      @auction.maker = @maker
-      @auction.car = @car
-      expect(@auction).to be_valid
-    end
+#
+FactoryBot.define do
+  factory :auction do
+    user
+    car
+    maker_id {car.maker.id}
+    title { |n| "AUCTION_#{n}" }
+    description {'Awesome Auction'}
+    initial_price {10000}
+    close_at {DateTime.now + 1.week}
   end
 end
+

@@ -229,6 +229,10 @@ GEM
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
     rmagick (2.16.0)
+    rspec (3.8.0)
+      rspec-core (~> 3.8.0)
+      rspec-expectations (~> 3.8.0)
+      rspec-mocks (~> 3.8.0)
     rspec-core (3.8.0)
       rspec-support (~> 3.8.0)
     rspec-expectations (3.8.2)
@@ -356,6 +360,7 @@ DEPENDENCIES
   rails-erd
   ransack
   rmagick
+  rspec
   rspec-rails
   rubocop
   sass-rails (~> 5.0)
