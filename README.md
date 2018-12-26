@@ -5,12 +5,13 @@ It is under construction yet.
 ## Todo
 - [x] user (devise)
 - [x] auction
-- [ ] bid
-- [ ] test (rspec)
+- [x] bid
+- [x] test (rspec)
+- [ ] system test (rspec)
 - [x] breadcrumb (gretel)
 - [x] search (ransack) 
 - [x] view counter
-- [ ] auction close function (2 patterns, by time up, by accepted:true on Auction)
+- [x] auction close function (2 patterns, by time up, by accepted:true on Auction)
 
 
 ## If necessary

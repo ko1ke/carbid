@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) {|repo| "https://github.com/#{repo}.git"}
 
-ruby '2.5.2'
+ruby '2.5.1'
 
 gem 'rails', '~> 5.2.1', '>= 5.2.1.1'
 gem 'mysql2', '>= 0.4.4', '< 0.6.0'
@@ -54,6 +54,7 @@ group :development do
   gem 'rails-erd'
   gem 'annotate'
   gem 'rubocop'
+  gem 'pre-commit'
   gem 'bullet'
 end
 
@@ -63,6 +64,7 @@ group :test do
   gem 'chromedriver-helper'
   gem 'rspec-rails'
   gem 'factory_bot_rails'
+  gem 'rspec_junit_formatter'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
