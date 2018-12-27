@@ -1,5 +1,5 @@
 module LoginSupport
-  def login_as(user)
+  def login_manually(user)
     visit user_session_path
     fill_in 'Eメール', with: user.email
     fill_in 'パスワード', with: 'passoword'
