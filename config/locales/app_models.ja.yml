@@ -25,6 +25,7 @@ ja:
         image: 画像
         accepted: 落札決定
         user: ユーザー
+        auction: オークション
     errors:
       models:
 

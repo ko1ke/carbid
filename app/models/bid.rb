@@ -21,6 +21,7 @@ class Bid < ApplicationRecord
 
   validate :new_price_must_be_lowest, on: :create
   validate :bidder_must_not_be_auction_master, on: :create
+  validate :auction_must_be_open
 
   belongs_to :user
   belongs_to :auction
@@ -45,6 +46,12 @@ class Bid < ApplicationRecord
     auction_master = auction.user
     if (bidder == auction_master)
       errors.add(:user, "は、自分のオークションには入札できません。")
+    end
+  end
+
+  def auction_must_be_open
+    if auction.closed?
+      errors.add(:auction, "は、既に終了しているため、入札できません")
     end
   end
 end
