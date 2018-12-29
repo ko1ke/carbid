@@ -20,6 +20,7 @@ class Bid < ApplicationRecord
   validates :price, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 0}
 
   validate :new_price_must_be_lowest, on: :create
+  validate :bidder_must_not_be_auction_master, on: :create
 
   belongs_to :user
   belongs_to :auction
@@ -36,6 +37,14 @@ class Bid < ApplicationRecord
     min_price = auction.bids.where.not(id: nil).minimum(:price) || auction.initial_price
     if price >= min_price
       errors.add(:price, "は 「#{min_price}」より低い額を入力してください。")
+    end
+  end
+
+  def bidder_must_not_be_auction_master
+    bidder = user
+    auction_master = auction.user
+    if (bidder == auction_master)
+      errors.add(:user, "は、自分のオークションには入札できません。")
     end
   end
 end

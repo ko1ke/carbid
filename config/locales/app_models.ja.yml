@@ -24,6 +24,7 @@ ja:
         suggestion: 提案内容
         image: 画像
         accepted: 落札決定
+        user: ユーザー
     errors:
       models:
 
