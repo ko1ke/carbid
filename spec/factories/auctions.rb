@@ -24,6 +24,10 @@ FactoryBot.define do
     description {'Awesome Auction'}
     initial_price {10000}
     close_at {DateTime.now + 1.week}
+
+    trait :closed do
+      closed true
+    end
   end
 end
 

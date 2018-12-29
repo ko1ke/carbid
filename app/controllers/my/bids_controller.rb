@@ -1,5 +1,5 @@
 class My::BidsController < My::ApplicationController
-  before_action :set_auction
+  before_action :set_auction, :others_auction?
   before_action :set_bid, only: [:edit, :update]
 
   def index
@@ -22,6 +22,12 @@ class My::BidsController < My::ApplicationController
   private
   def set_auction
     @auction = Auction.find(params[:auction_id])
+  end
+
+  def others_auction?
+    unless @auction.user.id == current_user.id
+      redirect_to root_path, notice: '権限がありません'
+    end
   end
 
   def set_bid

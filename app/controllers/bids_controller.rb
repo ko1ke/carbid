@@ -1,5 +1,5 @@
 class BidsController < ApplicationController
-  before_action :set_auction
+  before_action :set_auction, :my_auction?
 
   def index
     @bids = @auction.bids.asc_price
@@ -27,6 +27,12 @@ class BidsController < ApplicationController
   private
     def set_auction
       @auction = Auction.find(params[:auction_id])
+    end
+
+    def my_auction?
+      if @auction.user.id == current_user.id
+        redirect_to root_path, notice: '権限がありません'
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

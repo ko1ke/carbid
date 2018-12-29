@@ -1,28 +1,29 @@
 require 'rails_helper'
 
 RSpec.describe 'Auctions', type: :system do
-  before do
-    @user1 = FactoryBot.create(:user)
-    @auction = FactoryBot.create(:auction)
-    @auction.update!(user: @user1)
-    @user2 = FactoryBot.create(:user)
-  end
+  let(:user_a){FactoryBot.create(:user)}
+  let(:auction){FactoryBot.create(:auction, user: user_a)}
+  let(:user_b){FactoryBot.create(:user, name: 'other')}
 
-  scenario 'gavel icon does not show for my auction' do
-    login_as(@user1, :scope => :user)
-    visit root_path
-    expect(page).not_to have_css '.fa-gavel'
-  end
+  describe 'gavel icons to bids' do
+    scenario 'do not show for own auction' do
+      auction
+      login_as(user_a, :scope => :user)
+      visit root_path
+      expect(page).not_to have_css '.fa-gavel'
+    end
 
-  scenario 'gavel icon shows when logout' do
-    login_as(@user2, :scope => :user)
-    visit root_path
-    expect(page).to have_css '.fa-gavel'
+    scenario 'shows when logout' do
+      auction
+      login_as(user_b, :scope => :user)
+      visit root_path
+      expect(page).to have_css '.fa-gavel'
+    end
   end
 
   scenario 'some items do not show in view when updating' do
-    login_as(@user1, :scope => :user)
-    visit edit_my_auction_path(@auction)
+    login_as(user_a, :scope => :user)
+    visit edit_my_auction_path(auction)
     expect(page).not_to have_content 'メーカー'
     expect(page).not_to have_content '車名'
     expect(page).not_to have_content '始値'
