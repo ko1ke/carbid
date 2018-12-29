@@ -7,6 +7,9 @@ class My::BidsController < My::ApplicationController
   end
 
   def edit
+    if @bid.auction.closed?
+      redirect_to [:my, :auction, :bids], notice: '既にオークションは終了しています。'
+    end
   end
 
   def update

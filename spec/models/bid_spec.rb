@@ -16,16 +16,23 @@
 require 'rails_helper'
 
 RSpec.describe Bid, type: :model do
-  let(:user_a){FactoryBot.create(:user)}
-  let(:user_b){FactoryBot.create(:user)}
-  let(:auction){FactoryBot.create(:auction, user: user_a)}
+  let(:user_a) {FactoryBot.create(:user)}
+  let(:user_b) {FactoryBot.create(:user)}
+  let(:auction) {FactoryBot.create(:auction, user: user_a)}
+  let(:auction_closed) {FactoryBot.create(:auction, user: user_a, closed: true)}
 
-  describe '#create' do
-    it 'should bid user and auction user are different' do
-      bid_a = FactoryBot.build(:bid, auction: auction, user: user_a)
-      expect(bid_a).not_to be_valid
-      bid_b = FactoryBot.build(:bid, auction: auction, user: user_b)
-      expect(bid_b).to be_valid
+  it 'should bid user and auction user are different' do
+    bid_a = FactoryBot.build(:bid, auction: auction, user: user_a)
+    expect(bid_a).not_to be_valid
+    bid_b = FactoryBot.build(:bid, auction: auction, user: user_b)
+    expect(bid_b).to be_valid
+  end
+
+  context 'auction is closed' do
+    it 'should be invalid with building instances' do
+      bid = FactoryBot.build(:bid, auction: auction_closed, user: user_b)
+      expect(bid).not_to be_valid
     end
   end
+
 end
