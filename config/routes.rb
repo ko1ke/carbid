@@ -5,6 +5,10 @@ Rails.application.routes.draw do
     resources :bids, only: [:index, :new, :create]
   end
 
+  resources :makers, only: [] do
+    resources :cars, only: :index
+  end
+
   namespace :my do
     resources :auctions, except: [:show] do
       resources :bids, only: [:index, :edit, :update]

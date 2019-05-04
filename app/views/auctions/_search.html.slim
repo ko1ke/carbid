@@ -1,16 +1,19 @@
 .jumbotron
   h3
     | 検索
-  = search_form_for(@q, url:root_path) do |f|
+  = search_form_for(@q, url: root_path) do |f|
     .form-row
       = f.label :maker_id_in, 'メーカー：'
-      = f.collection_check_boxes :maker_id_in, Maker.all, :id, :name do |b|
-        =< b.label { b.check_box + ' ' + b.text + '　'}
+      = f.select :maker_id_in, Maker.all.map {|m| [m.name, m.id, data: {children_path: maker_cars_path(m)}]}, {include_blank: true}, class: 'select-parent'
+    / = f.label :maker_id_in, 'メーカー：'
+    / = f.collection_check_boxes :maker_id_in, Maker.all, :id, :name do |b|
+    /   =< b.label { b.check_box + ' ' + b.text + '　'}
 
+    - cars = @maker&.cars || []
     .form-row
       .form-inline.mr-2
         = f.label :car_id_in, '車名：'
-        = f.select :car_id_in, Car.all.map {|c| [c.name, c.id]}, include_blank: true
+        = f.select :car_id_in, cars.map {|c| [c.name, c.id]}, include_blank: true
       .form-inline.mr-2
         = f.label :title_cont, 'タイトル：'
         = f.search_field :title_cont, class: 'form-control-sm', placeholder: '文字で検索'
